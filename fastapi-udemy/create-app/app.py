@@ -8,23 +8,25 @@ import json
 page = st.sidebar.selectbox('choose your page', ['users', 'rooms', 'bookings'])
 
 if page == 'users':
-	st.title('APTテスト(ユーザー)')
+	st.title('ユーザー登録画面')
 	with st.form(key='user'):
-		user_id: int = random.randint(0, 100)
+		# user_id: int = random.randint(0, 100)
 		username: str = st.text_input('ユーザー名', max_chars=12)
 		data = {
-			'user_id': user_id,
+			# 'user_id': user_id,
 			'username': username
 		}
 		submit_button = st.form_submit_button(label='リクエスト送信')
 
 	if submit_button:
-		st.write('## 送信データ')
-		st.json(data)
 		st.write('## レスポンス結果')
 		url="http://127.0.0.1:8000/users"
-		res = requests.post(url, data=json.dumps(data))
-		st.write(res.status_code)
+		res = requests.post(
+						url, 
+						data=json.dumps(data)
+		)
+		if res.status_code ==	200:
+						st.success('ユーザー登録完了')
 		st.json(res.json())
 
 elif page == 'rooms':
