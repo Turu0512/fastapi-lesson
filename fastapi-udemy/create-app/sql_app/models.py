@@ -13,7 +13,7 @@ class Room(Base):
     room_name = Column(String, unique=True, index=True)
     capacity = Column(Integer)
 
-class Bookings(Base):
+class Booking(Base):
     __tablename__ = 'bookings'
     booking_id = Column(Integer, primary_key=True, index=True)
     user_id = Column(String, ForeignKey('users.user_id', ondelete='SET NULL'), nullable=False)
