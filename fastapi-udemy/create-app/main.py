@@ -21,20 +21,20 @@ class Room(BaseModel):
 	capacity: int
 
 
-app = FastAPI
+app = FastAPI()
 
-@app.get('/')
+@app.get("/")
 async def index():
 	return {"message": "Success"}
 
-@app.post('/users')
+@app.post("/users")
 async def users(users: User):
 	return {"users": users}
 
-@app.post('/rooms')
+@app.post("/rooms")
 async def rooms(rooms: Room):
 	return {"rooms": rooms}
 
-@app.post('/bookings')
+@app.post("/bookings")
 async def bookings(bookings: Booking):
 	return {"bookings": bookings}
